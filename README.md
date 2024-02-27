@@ -1,1 +1,1 @@
-
+Created eks cluster,  nodes groups t3.small , with autoscaler, created node groups, attached cni ,csi drivers as add on. And output the kubeconfig file. Used private subnets for your nodes and use aws cli to connect your cluster. Min capacity is 0 nodes max capacity 10.
