@@ -53,6 +53,12 @@ resource "aws_iam_role_policy_attachment" "amazon_ec2_container_registry_read_on
   role = aws_iam_role.nodes_general.name
 }
 
+# Attach IAM policy to grant permission to create volumes
+resource "aws_iam_role_policy_attachment" "attach_volume_policy" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"  # Example policy granting full EC2 access, adjust as needed
+  role       = aws_iam_role.nodes_general.name
+}
+
 # Resource: aws_eks_node_group
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_node_group
 
@@ -117,5 +123,6 @@ resource "aws_eks_node_group" "nodes_general" {
     aws_iam_role_policy_attachment.amazon_eks_worker_node_policy_general,
     aws_iam_role_policy_attachment.amazon_eks_cni_policy_general,
     aws_iam_role_policy_attachment.amazon_ec2_container_registry_read_only,
+    aws_iam_role_policy_attachment.attach_volume_policy
   ]
 }
