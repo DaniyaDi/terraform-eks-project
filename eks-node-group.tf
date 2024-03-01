@@ -71,6 +71,7 @@ resource "aws_eks_node_group" "nodes_general" {
   # (where CLUSTER_NAME is replaced with the name of the EKS Cluster).
   subnet_ids = [
     aws_subnet.private_subnet[1].id,
+    aws_subnet.private_subnet[2].id,
     aws_subnet.private_subnet[2].id
   ]
 
@@ -83,7 +84,7 @@ resource "aws_eks_node_group" "nodes_general" {
     max_size = 10
 
     # Minimum number of worker nodes.
-    min_size = 0
+    min_size = 1
   }
 
   # Type of Amazon Machine Image (AMI) associated with the EKS Node Group.
